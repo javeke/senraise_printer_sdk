@@ -36,4 +36,8 @@ abstract class SenraiseSdkPlatform extends PlatformInterface {
   Future<void> printTestPage() {
     throw UnimplementedError('printTestPage() has not been implemented.');
   }
+
+  Future<void> setTextSize(double textSize){
+    throw UnimplementedError('setTextSize() has not been implemented.');
+  }
 }

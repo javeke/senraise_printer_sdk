@@ -11,4 +11,8 @@ class SenraiseSdk {
   Future<void> printText(String text) async {
     return await SenraiseSdkPlatform.instance.printText(text);
   }
+
+  Future<void> setTextSize(double textSize) async {
+    return await SenraiseSdkPlatform.instance.setTextSize(textSize);
+  }
 }

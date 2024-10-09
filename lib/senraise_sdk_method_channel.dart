@@ -25,4 +25,9 @@ class MethodChannelSenraiseSdk extends SenraiseSdkPlatform {
   Future<void> printTestPage() async {
     return await _hostApi.printTestPage();
   }
+
+  @override
+  Future<void> setTextSize(double textSize) async {
+    return await _hostApi.setTextSize(textSize);
+  }
 }

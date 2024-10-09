@@ -65,4 +65,11 @@ class SenraiseSdkPlugin: FlutterPlugin, SenraiseSdkHostApi.IHostApi {
     }
     printerInterface?.printText("Test Page")
   }
+
+    override fun setTextSize(textSize: Double) {
+        if(printerInterface == null){
+            throw Exception("No printer connection established")
+        }
+        printerInterface?.setTextSize(textSize.toFloat())
+    }
 }

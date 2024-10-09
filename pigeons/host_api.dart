@@ -15,4 +15,5 @@ abstract class IHostApi {
   void printText(String text);
   void printImage(Uint8List bytes);
   void printTestPage();
+  void setTextSize(double textSize);
 }

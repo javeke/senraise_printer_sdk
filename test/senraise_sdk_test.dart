@@ -26,6 +26,12 @@ class MockSenraiseSdkPlatform
     // TODO: implement printTestPage
     throw UnimplementedError();
   }
+  
+  @override
+  Future<void> setTextSize(double textSize) {
+    // TODO: implement setTextSize
+    throw UnimplementedError();
+  }
 }
 
 void main() {

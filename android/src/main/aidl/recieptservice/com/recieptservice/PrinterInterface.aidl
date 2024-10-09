@@ -1,4 +1,4 @@
-package com.receiptservice;
+package recieptservice.com.recieptservice;
 
 interface PrinterInterface {
      void printEpson(in byte []data);

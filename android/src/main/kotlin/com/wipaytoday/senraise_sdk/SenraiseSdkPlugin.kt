@@ -7,7 +7,7 @@ import android.content.ServiceConnection
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.IBinder
-import com.receiptservice.PrinterInterface
+import recieptservice.com.recieptservice.PrinterInterface
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 
 
@@ -27,8 +27,8 @@ class SenraiseSdkPlugin: FlutterPlugin, SenraiseSdkHostApi.IHostApi {
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     val intent = Intent()
     intent.setClassName(
-      "com.receiptservice",
-      "com.receiptservice.service.PrinterService"
+      "recieptservice.com.recieptservice",
+      "recieptservice.com.recieptservice.service.PrinterService"
     )
     flutterPluginBinding.applicationContext.startService(intent)
     flutterPluginBinding.applicationContext.bindService(

@@ -75,4 +75,9 @@ class MethodChannelSenraiseSdk extends SenraiseSdkPlatform {
   Future<void> setTextBold(bool bold) async {
     return await _hostApi.setTextBold(bold);
   }
+
+  @override
+  Future<void> printPage(PrintData page) async {
+    return await _hostApi.printPage(page);
+  }
 }

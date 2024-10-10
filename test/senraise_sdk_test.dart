@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:senraise_sdk/senraise_sdk_platform_interface.dart';
 import 'package:senraise_sdk/senraise_sdk_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
+import 'package:senraise_sdk/src/api/host_api.dart';
 
 class MockSenraiseSdkPlatform
     with MockPlatformInterfaceMixin
@@ -84,6 +85,12 @@ class MockSenraiseSdkPlatform
   @override
   Future<void> setTextBold(bool bold) {
     // TODO: implement setTextBold
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> printPage(PrintData page) {
+    // TODO: implement printPage
     throw UnimplementedError();
   }
 }

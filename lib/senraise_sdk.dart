@@ -1,6 +1,8 @@
 
 import 'dart:typed_data';
 
+import 'package:senraise_sdk/types.dart';
+
 import 'senraise_sdk_platform_interface.dart';
 
 class SenraiseSdk {
@@ -50,5 +52,9 @@ class SenraiseSdk {
 
   Future<void> setTextBold(bool bold) async {
     return await SenraiseSdkPlatform.instance.setTextBold(bold);
+  }
+
+  Future<void> printPage(PrintData page) async {
+    return await SenraiseSdkPlatform.instance.printPage(page);
   }
 }

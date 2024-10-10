@@ -3,6 +3,9 @@
 
 package com.wipaytoday.senraise_sdk;
 
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.CLASS;
+
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +14,8 @@ import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MessageCodec;
 import io.flutter.plugin.common.StandardMessageCodec;
 import java.io.ByteArrayOutputStream;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,6 +63,291 @@ public class SenraiseSdkHostApi {
     return errorList;
   }
 
+  @Target(METHOD)
+  @Retention(CLASS)
+  @interface CanIgnoreReturnValue {}
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static final class PrintLine {
+    private @Nullable Boolean isBitMap;
+
+    public @Nullable Boolean getIsBitMap() {
+      return isBitMap;
+    }
+
+    public void setIsBitMap(@Nullable Boolean setterArg) {
+      this.isBitMap = setterArg;
+    }
+
+    private @Nullable Boolean isText;
+
+    public @Nullable Boolean getIsText() {
+      return isText;
+    }
+
+    public void setIsText(@Nullable Boolean setterArg) {
+      this.isText = setterArg;
+    }
+
+    private @Nullable String text;
+
+    public @Nullable String getText() {
+      return text;
+    }
+
+    public void setText(@Nullable String setterArg) {
+      this.text = setterArg;
+    }
+
+    private @Nullable byte[] bitMap;
+
+    public @Nullable byte[] getBitMap() {
+      return bitMap;
+    }
+
+    public void setBitMap(@Nullable byte[] setterArg) {
+      this.bitMap = setterArg;
+    }
+
+    private @Nullable Double fontSize;
+
+    public @Nullable Double getFontSize() {
+      return fontSize;
+    }
+
+    public void setFontSize(@Nullable Double setterArg) {
+      this.fontSize = setterArg;
+    }
+
+    /**
+     * 
+     * 0 - LEFT, 1 - CENTER, 2 - RIGHT
+     *
+     */
+    private @Nullable Long alignment;
+
+    public @Nullable Long getAlignment() {
+      return alignment;
+    }
+
+    public void setAlignment(@Nullable Long setterArg) {
+      this.alignment = setterArg;
+    }
+
+    private @Nullable Boolean isBold;
+
+    public @Nullable Boolean getIsBold() {
+      return isBold;
+    }
+
+    public void setIsBold(@Nullable Boolean setterArg) {
+      this.isBold = setterArg;
+    }
+
+    private @Nullable Boolean nextLine;
+
+    public @Nullable Boolean getNextLine() {
+      return nextLine;
+    }
+
+    public void setNextLine(@Nullable Boolean setterArg) {
+      this.nextLine = setterArg;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) { return true; }
+      if (o == null || getClass() != o.getClass()) { return false; }
+      PrintLine that = (PrintLine) o;
+      return Objects.equals(isBitMap, that.isBitMap) && Objects.equals(isText, that.isText) && Objects.equals(text, that.text) && Arrays.equals(bitMap, that.bitMap) && Objects.equals(fontSize, that.fontSize) && Objects.equals(alignment, that.alignment) && Objects.equals(isBold, that.isBold) && Objects.equals(nextLine, that.nextLine);
+    }
+
+    @Override
+    public int hashCode() {
+      int pigeonVar_result = Objects.hash(isBitMap, isText, text, fontSize, alignment, isBold, nextLine);
+      pigeonVar_result = 31 * pigeonVar_result + Arrays.hashCode(bitMap);
+      return pigeonVar_result;
+    }
+
+    public static final class Builder {
+
+      private @Nullable Boolean isBitMap;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setIsBitMap(@Nullable Boolean setterArg) {
+        this.isBitMap = setterArg;
+        return this;
+      }
+
+      private @Nullable Boolean isText;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setIsText(@Nullable Boolean setterArg) {
+        this.isText = setterArg;
+        return this;
+      }
+
+      private @Nullable String text;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setText(@Nullable String setterArg) {
+        this.text = setterArg;
+        return this;
+      }
+
+      private @Nullable byte[] bitMap;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setBitMap(@Nullable byte[] setterArg) {
+        this.bitMap = setterArg;
+        return this;
+      }
+
+      private @Nullable Double fontSize;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setFontSize(@Nullable Double setterArg) {
+        this.fontSize = setterArg;
+        return this;
+      }
+
+      private @Nullable Long alignment;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setAlignment(@Nullable Long setterArg) {
+        this.alignment = setterArg;
+        return this;
+      }
+
+      private @Nullable Boolean isBold;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setIsBold(@Nullable Boolean setterArg) {
+        this.isBold = setterArg;
+        return this;
+      }
+
+      private @Nullable Boolean nextLine;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setNextLine(@Nullable Boolean setterArg) {
+        this.nextLine = setterArg;
+        return this;
+      }
+
+      public @NonNull PrintLine build() {
+        PrintLine pigeonReturn = new PrintLine();
+        pigeonReturn.setIsBitMap(isBitMap);
+        pigeonReturn.setIsText(isText);
+        pigeonReturn.setText(text);
+        pigeonReturn.setBitMap(bitMap);
+        pigeonReturn.setFontSize(fontSize);
+        pigeonReturn.setAlignment(alignment);
+        pigeonReturn.setIsBold(isBold);
+        pigeonReturn.setNextLine(nextLine);
+        return pigeonReturn;
+      }
+    }
+
+    @NonNull
+    ArrayList<Object> toList() {
+      ArrayList<Object> toListResult = new ArrayList<>(8);
+      toListResult.add(isBitMap);
+      toListResult.add(isText);
+      toListResult.add(text);
+      toListResult.add(bitMap);
+      toListResult.add(fontSize);
+      toListResult.add(alignment);
+      toListResult.add(isBold);
+      toListResult.add(nextLine);
+      return toListResult;
+    }
+
+    static @NonNull PrintLine fromList(@NonNull ArrayList<Object> pigeonVar_list) {
+      PrintLine pigeonResult = new PrintLine();
+      Object isBitMap = pigeonVar_list.get(0);
+      pigeonResult.setIsBitMap((Boolean) isBitMap);
+      Object isText = pigeonVar_list.get(1);
+      pigeonResult.setIsText((Boolean) isText);
+      Object text = pigeonVar_list.get(2);
+      pigeonResult.setText((String) text);
+      Object bitMap = pigeonVar_list.get(3);
+      pigeonResult.setBitMap((byte[]) bitMap);
+      Object fontSize = pigeonVar_list.get(4);
+      pigeonResult.setFontSize((Double) fontSize);
+      Object alignment = pigeonVar_list.get(5);
+      pigeonResult.setAlignment((Long) alignment);
+      Object isBold = pigeonVar_list.get(6);
+      pigeonResult.setIsBold((Boolean) isBold);
+      Object nextLine = pigeonVar_list.get(7);
+      pigeonResult.setNextLine((Boolean) nextLine);
+      return pigeonResult;
+    }
+  }
+
+  /** Generated class from Pigeon that represents data sent in messages. */
+  public static final class PrintData {
+    private @NonNull List<PrintLine> lines;
+
+    public @NonNull List<PrintLine> getLines() {
+      return lines;
+    }
+
+    public void setLines(@NonNull List<PrintLine> setterArg) {
+      if (setterArg == null) {
+        throw new IllegalStateException("Nonnull field \"lines\" is null.");
+      }
+      this.lines = setterArg;
+    }
+
+    /** Constructor is non-public to enforce null safety; use Builder. */
+    PrintData() {}
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) { return true; }
+      if (o == null || getClass() != o.getClass()) { return false; }
+      PrintData that = (PrintData) o;
+      return lines.equals(that.lines);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(lines);
+    }
+
+    public static final class Builder {
+
+      private @Nullable List<PrintLine> lines;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setLines(@NonNull List<PrintLine> setterArg) {
+        this.lines = setterArg;
+        return this;
+      }
+
+      public @NonNull PrintData build() {
+        PrintData pigeonReturn = new PrintData();
+        pigeonReturn.setLines(lines);
+        return pigeonReturn;
+      }
+    }
+
+    @NonNull
+    ArrayList<Object> toList() {
+      ArrayList<Object> toListResult = new ArrayList<>(1);
+      toListResult.add(lines);
+      return toListResult;
+    }
+
+    static @NonNull PrintData fromList(@NonNull ArrayList<Object> pigeonVar_list) {
+      PrintData pigeonResult = new PrintData();
+      Object lines = pigeonVar_list.get(0);
+      pigeonResult.setLines((List<PrintLine>) lines);
+      return pigeonResult;
+    }
+  }
+
   private static class PigeonCodec extends StandardMessageCodec {
     public static final PigeonCodec INSTANCE = new PigeonCodec();
 
@@ -66,6 +356,10 @@ public class SenraiseSdkHostApi {
     @Override
     protected Object readValueOfType(byte type, @NonNull ByteBuffer buffer) {
       switch (type) {
+        case (byte) 129:
+          return PrintLine.fromList((ArrayList<Object>) readValue(buffer));
+        case (byte) 130:
+          return PrintData.fromList((ArrayList<Object>) readValue(buffer));
         default:
           return super.readValueOfType(type, buffer);
       }
@@ -73,7 +367,13 @@ public class SenraiseSdkHostApi {
 
     @Override
     protected void writeValue(@NonNull ByteArrayOutputStream stream, Object value) {
-      {
+      if (value instanceof PrintLine) {
+        stream.write(129);
+        writeValue(stream, ((PrintLine) value).toList());
+      } else if (value instanceof PrintData) {
+        stream.write(130);
+        writeValue(stream, ((PrintData) value).toList());
+      } else {
         super.writeValue(stream, value);
       }
     }
@@ -85,6 +385,8 @@ public class SenraiseSdkHostApi {
     void printText(@NonNull String text);
 
     void printImage(@NonNull byte[] bytes);
+
+    void printPage(@NonNull PrintData page);
 
     void printTestPage();
 
@@ -153,6 +455,29 @@ public class SenraiseSdkHostApi {
                 byte[] bytesArg = (byte[]) args.get(0);
                 try {
                   api.printImage(bytesArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.printPage" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                PrintData pageArg = (PrintData) args.get(0);
+                try {
+                  api.printPage(pageArg);
                   wrapped.add(0, null);
                 }
  catch (Throwable exception) {

@@ -10,10 +10,34 @@ import 'package:pigeon/pigeon.dart';
   )
 )
 
+class PrintLine {
+  bool? isBitMap;
+  bool? isText;
+  String? text;
+  Uint8List? bitMap;
+  double? fontSize;
+
+  /// 
+  /// 0 - LEFT, 1 - CENTER, 2 - RIGHT
+  ///
+  int? alignment;
+  bool? isBold;
+  bool? nextLine;
+}
+
+class PrintData {
+  List<PrintLine> lines;
+
+  PrintData({
+    required this.lines
+  });
+}
+
 @HostApi()
 abstract class IHostApi {
   void printText(String text);
   void printImage(Uint8List bytes);
+  void printPage(PrintData page);
   void printTestPage();
   void setTextSize(double textSize);
   void setLineHeight(double lineHeight);

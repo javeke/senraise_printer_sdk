@@ -15,6 +15,86 @@ PlatformException _createConnectionError(String channelName) {
   );
 }
 
+class PrintLine {
+  PrintLine({
+    this.isBitMap,
+    this.isText,
+    this.text,
+    this.bitMap,
+    this.fontSize,
+    this.alignment,
+    this.isBold,
+    this.nextLine,
+  });
+
+  bool? isBitMap;
+
+  bool? isText;
+
+  String? text;
+
+  Uint8List? bitMap;
+
+  double? fontSize;
+
+  /// 
+  /// 0 - LEFT, 1 - CENTER, 2 - RIGHT
+  ///
+  int? alignment;
+
+  bool? isBold;
+
+  bool? nextLine;
+
+  Object encode() {
+    return <Object?>[
+      isBitMap,
+      isText,
+      text,
+      bitMap,
+      fontSize,
+      alignment,
+      isBold,
+      nextLine,
+    ];
+  }
+
+  static PrintLine decode(Object result) {
+    result as List<Object?>;
+    return PrintLine(
+      isBitMap: result[0] as bool?,
+      isText: result[1] as bool?,
+      text: result[2] as String?,
+      bitMap: result[3] as Uint8List?,
+      fontSize: result[4] as double?,
+      alignment: result[5] as int?,
+      isBold: result[6] as bool?,
+      nextLine: result[7] as bool?,
+    );
+  }
+}
+
+class PrintData {
+  PrintData({
+    required this.lines,
+  });
+
+  List<PrintLine> lines;
+
+  Object encode() {
+    return <Object?>[
+      lines,
+    ];
+  }
+
+  static PrintData decode(Object result) {
+    result as List<Object?>;
+    return PrintData(
+      lines: (result[0] as List<Object?>?)!.cast<PrintLine>(),
+    );
+  }
+}
+
 
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
@@ -23,6 +103,12 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
+    }    else if (value is PrintLine) {
+      buffer.putUint8(129);
+      writeValue(buffer, value.encode());
+    }    else if (value is PrintData) {
+      buffer.putUint8(130);
+      writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
     }
@@ -31,6 +117,10 @@ class _PigeonCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
+      case 129: 
+        return PrintLine.decode(readValue(buffer)!);
+      case 130: 
+        return PrintData.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
     }
@@ -81,6 +171,28 @@ class IHostApi {
     );
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_channel.send(<Object?>[bytes]) as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> printPage(PrintData page) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.senraise_sdk.IHostApi.printPage$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_channel.send(<Object?>[page]) as List<Object?>?;
     if (pigeonVar_replyList == null) {
       throw _createConnectionError(pigeonVar_channelName);
     } else if (pigeonVar_replyList.length > 1) {

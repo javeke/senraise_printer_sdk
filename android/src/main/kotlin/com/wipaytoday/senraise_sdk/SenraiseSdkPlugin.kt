@@ -64,6 +64,45 @@ class SenraiseSdkPlugin: FlutterPlugin, SenraiseSdkHostApi.IHostApi {
     printerInterface?.endWork()
   }
 
+  override fun printPage(page: SenraiseSdkHostApi.PrintData) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+
+    printerInterface?.beginWork()
+    for (line in page.lines){
+      printerInterface?.setTextBold(false)
+
+      if(line.alignment != null){
+        printerInterface?.setAlignment(line.alignment?.toInt() ?: 0)
+      }
+
+      if(line.isBold == true){
+        printerInterface?.setTextBold(true)
+      }
+
+      if(line.fontSize != null){
+        printerInterface?.setTextSize(line.fontSize?.toFloat() ?: 12.0f)
+      }
+
+      if(line.isBitMap == true && line.bitMap != null){
+        val bitmapImage: Bitmap = BitmapFactory.decodeByteArray(line.bitMap, 0, line.bitMap?.size ?: 0)
+        printerInterface?.printBitmap(bitmapImage)
+      }
+
+      if(line.isText == true && line.text != null){
+
+        printerInterface?.printText(line.text)
+      }
+
+      if(line.nextLine == true){
+        printerInterface?.printText("\n");
+      }
+    }
+
+    printerInterface?.endWork()
+  }
+
   override fun printTestPage() {
     if(printerInterface == null){
       throw Exception("No printer connection established")

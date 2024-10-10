@@ -90,6 +90,24 @@ public class SenraiseSdkHostApi {
 
     void setTextSize(@NonNull Double textSize);
 
+    void setLineHeight(@NonNull Double lineHeight);
+
+    void print128BarCode(@NonNull String data, @NonNull Long type, @NonNull Long height, @NonNull Long width);
+
+    void setTextDoubleWidth(@NonNull Boolean enable);
+
+    void setTextDoubleHeight(@NonNull Boolean enable);
+
+    void printEpson(@NonNull byte[] data);
+
+    void setAlignment(@NonNull Long alignment);
+
+    void nextLine(@NonNull Long line);
+
+    void printTableText(@NonNull List<String> text, @NonNull List<Long> weight, @NonNull List<Long> alignment);
+
+    void setTextBold(@NonNull Boolean bold);
+
     /** The codec used by IHostApi. */
     static @NonNull MessageCodec<Object> getCodec() {
       return PigeonCodec.INSTANCE;
@@ -179,6 +197,218 @@ public class SenraiseSdkHostApi {
                 Double textSizeArg = (Double) args.get(0);
                 try {
                   api.setTextSize(textSizeArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.setLineHeight" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                Double lineHeightArg = (Double) args.get(0);
+                try {
+                  api.setLineHeight(lineHeightArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.print128BarCode" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                String dataArg = (String) args.get(0);
+                Long typeArg = (Long) args.get(1);
+                Long heightArg = (Long) args.get(2);
+                Long widthArg = (Long) args.get(3);
+                try {
+                  api.print128BarCode(dataArg, typeArg, heightArg, widthArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.setTextDoubleWidth" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                Boolean enableArg = (Boolean) args.get(0);
+                try {
+                  api.setTextDoubleWidth(enableArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.setTextDoubleHeight" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                Boolean enableArg = (Boolean) args.get(0);
+                try {
+                  api.setTextDoubleHeight(enableArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.printEpson" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                byte[] dataArg = (byte[]) args.get(0);
+                try {
+                  api.printEpson(dataArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.setAlignment" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                Long alignmentArg = (Long) args.get(0);
+                try {
+                  api.setAlignment(alignmentArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.nextLine" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                Long lineArg = (Long) args.get(0);
+                try {
+                  api.nextLine(lineArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.printTableText" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                List<String> textArg = (List<String>) args.get(0);
+                List<Long> weightArg = (List<Long>) args.get(1);
+                List<Long> alignmentArg = (List<Long>) args.get(2);
+                try {
+                  api.printTableText(textArg, weightArg, alignmentArg);
+                  wrapped.add(0, null);
+                }
+ catch (Throwable exception) {
+                  wrapped = wrapError(exception);
+                }
+                reply.reply(wrapped);
+              });
+        } else {
+          channel.setMessageHandler(null);
+        }
+      }
+      {
+        BasicMessageChannel<Object> channel =
+            new BasicMessageChannel<>(
+                binaryMessenger, "dev.flutter.pigeon.senraise_sdk.IHostApi.setTextBold" + messageChannelSuffix, getCodec());
+        if (api != null) {
+          channel.setMessageHandler(
+              (message, reply) -> {
+                ArrayList<Object> wrapped = new ArrayList<>();
+                ArrayList<Object> args = (ArrayList<Object>) message;
+                Boolean boldArg = (Boolean) args.get(0);
+                try {
+                  api.setTextBold(boldArg);
                   wrapped.add(0, null);
                 }
  catch (Throwable exception) {

@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.os.IBinder
 import recieptservice.com.recieptservice.PrinterInterface
 import io.flutter.embedding.engine.plugins.FlutterPlugin
+import java.io.ByteArrayInputStream
 
 
 class SenraiseSdkPlugin: FlutterPlugin, SenraiseSdkHostApi.IHostApi {
@@ -48,25 +49,108 @@ class SenraiseSdkPlugin: FlutterPlugin, SenraiseSdkHostApi.IHostApi {
     if(printerInterface == null){
       throw Exception("No printer connection established")
     }
+    printerInterface?.beginWork()
     printerInterface?.printText(text)
+    printerInterface?.endWork()
   }
 
   override fun printImage(bytes: ByteArray) {
     if(printerInterface == null){
       throw Exception("No printer connection established")
     }
-    val bitmapImage: Bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+    val bitmapImage: Bitmap = BitmapFactory.decodeStream(ByteArrayInputStream(bytes))
+    printerInterface?.beginWork()
     printerInterface?.printBitmap(bitmapImage)
+    printerInterface?.endWork()
   }
 
   override fun printTestPage() {
     if(printerInterface == null){
       throw Exception("No printer connection established")
     }
+    printerInterface?.beginWork()
     printerInterface?.printText("Test Page")
+    printerInterface?.endWork()
   }
 
-    override fun setTextSize(textSize: Double) {
+  override fun printEpson(data: ByteArray) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+    printerInterface?.beginWork()
+    printerInterface?.printEpson(data)
+    printerInterface?.endWork()
+  }
+
+  override fun printTableText(
+    text: MutableList<String>,
+    weight: MutableList<Long>,
+    alignment: MutableList<Long>
+  ) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+
+    val weights = weight.map { it.toInt() }.toIntArray()
+    val alignments = alignment.map { it.toInt() }.toIntArray()
+
+    printerInterface?.beginWork()
+    printerInterface?.printTableText(text.toTypedArray(), weights, alignments)
+    printerInterface?.endWork()
+  }
+
+  override fun setTextBold(bold: Boolean) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+    printerInterface?.setTextBold(bold)
+  }
+
+  override fun nextLine(line: Long) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+    printerInterface?.nextLine(line.toInt())
+  }
+
+  override fun setAlignment(alignment: Long) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+    printerInterface?.setAlignment(alignment.toInt())
+  }
+
+  override fun setTextDoubleHeight(enable: Boolean) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+    printerInterface?.setTextDoubleHeight(enable)
+  }
+
+  override fun setTextDoubleWidth(enable: Boolean) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+    printerInterface?.setTextDoubleWidth(enable)
+  }
+
+  override fun print128BarCode(data: String, type: Long, height: Long, width: Long) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+    printerInterface?.beginWork()
+    printerInterface?.print128BarCode(data, type.toInt(), height.toInt(), width.toInt())
+    printerInterface?.endWork()
+  }
+
+  override fun setLineHeight(lineHeight: Double) {
+    if(printerInterface == null){
+      throw Exception("No printer connection established")
+    }
+    printerInterface?.setLineHeight(lineHeight.toFloat())
+  }
+
+  override fun setTextSize(textSize: Double) {
         if(printerInterface == null){
             throw Exception("No printer connection established")
         }

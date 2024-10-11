@@ -19,6 +19,10 @@ class PrintLine {
   PrintLine({
     this.isBitMap,
     this.isText,
+    this.isTableRow,
+    this.rowData,
+    this.weights,
+    this.alignments,
     this.text,
     this.bitMap,
     this.fontSize,
@@ -30,6 +34,14 @@ class PrintLine {
   bool? isBitMap;
 
   bool? isText;
+
+  bool? isTableRow;
+
+  List<String>? rowData;
+
+  Int32List? weights;
+
+  Int32List? alignments;
 
   String? text;
 
@@ -50,6 +62,10 @@ class PrintLine {
     return <Object?>[
       isBitMap,
       isText,
+      isTableRow,
+      rowData,
+      weights,
+      alignments,
       text,
       bitMap,
       fontSize,
@@ -64,12 +80,16 @@ class PrintLine {
     return PrintLine(
       isBitMap: result[0] as bool?,
       isText: result[1] as bool?,
-      text: result[2] as String?,
-      bitMap: result[3] as Uint8List?,
-      fontSize: result[4] as double?,
-      alignment: result[5] as int?,
-      isBold: result[6] as bool?,
-      nextLine: result[7] as bool?,
+      isTableRow: result[2] as bool?,
+      rowData: (result[3] as List<Object?>?)?.cast<String>(),
+      weights: result[4] as Int32List?,
+      alignments: result[5] as Int32List?,
+      text: result[6] as String?,
+      bitMap: result[7] as Uint8List?,
+      fontSize: result[8] as double?,
+      alignment: result[9] as int?,
+      isBold: result[10] as bool?,
+      nextLine: result[11] as bool?,
     );
   }
 }

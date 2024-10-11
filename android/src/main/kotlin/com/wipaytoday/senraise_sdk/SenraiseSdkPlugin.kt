@@ -89,9 +89,10 @@ class SenraiseSdkPlugin: FlutterPlugin, SenraiseSdkHostApi.IHostApi {
         val bitmapImage: Bitmap = BitmapFactory.decodeByteArray(line.bitMap, 0, line.bitMap?.size ?: 0)
         printerInterface?.printBitmap(bitmapImage)
       }
-
-      if(line.isText == true && line.text != null){
-
+      else if(line.isTableRow == true && line.rowData != null && line.weights != null && line.alignments != null) {
+        printerInterface?.printTableText(line.rowData?.toTypedArray(), line.weights, line.alignments)
+      }
+      else if(line.isText == true && line.text != null){
         printerInterface?.printText(line.text)
       }
 

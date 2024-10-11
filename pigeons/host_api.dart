@@ -13,6 +13,10 @@ import 'package:pigeon/pigeon.dart';
 class PrintLine {
   bool? isBitMap;
   bool? isText;
+  bool? isTableRow;
+  List<String>? rowData;
+  Int32List? weights;
+  Int32List? alignments;
   String? text;
   Uint8List? bitMap;
   double? fontSize;

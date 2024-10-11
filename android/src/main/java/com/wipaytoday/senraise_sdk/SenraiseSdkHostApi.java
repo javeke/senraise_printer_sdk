@@ -89,6 +89,46 @@ public class SenraiseSdkHostApi {
       this.isText = setterArg;
     }
 
+    private @Nullable Boolean isTableRow;
+
+    public @Nullable Boolean getIsTableRow() {
+      return isTableRow;
+    }
+
+    public void setIsTableRow(@Nullable Boolean setterArg) {
+      this.isTableRow = setterArg;
+    }
+
+    private @Nullable List<String> rowData;
+
+    public @Nullable List<String> getRowData() {
+      return rowData;
+    }
+
+    public void setRowData(@Nullable List<String> setterArg) {
+      this.rowData = setterArg;
+    }
+
+    private @Nullable int[] weights;
+
+    public @Nullable int[] getWeights() {
+      return weights;
+    }
+
+    public void setWeights(@Nullable int[] setterArg) {
+      this.weights = setterArg;
+    }
+
+    private @Nullable int[] alignments;
+
+    public @Nullable int[] getAlignments() {
+      return alignments;
+    }
+
+    public void setAlignments(@Nullable int[] setterArg) {
+      this.alignments = setterArg;
+    }
+
     private @Nullable String text;
 
     public @Nullable String getText() {
@@ -159,12 +199,14 @@ public class SenraiseSdkHostApi {
       if (this == o) { return true; }
       if (o == null || getClass() != o.getClass()) { return false; }
       PrintLine that = (PrintLine) o;
-      return Objects.equals(isBitMap, that.isBitMap) && Objects.equals(isText, that.isText) && Objects.equals(text, that.text) && Arrays.equals(bitMap, that.bitMap) && Objects.equals(fontSize, that.fontSize) && Objects.equals(alignment, that.alignment) && Objects.equals(isBold, that.isBold) && Objects.equals(nextLine, that.nextLine);
+      return Objects.equals(isBitMap, that.isBitMap) && Objects.equals(isText, that.isText) && Objects.equals(isTableRow, that.isTableRow) && Objects.equals(rowData, that.rowData) && Arrays.equals(weights, that.weights) && Arrays.equals(alignments, that.alignments) && Objects.equals(text, that.text) && Arrays.equals(bitMap, that.bitMap) && Objects.equals(fontSize, that.fontSize) && Objects.equals(alignment, that.alignment) && Objects.equals(isBold, that.isBold) && Objects.equals(nextLine, that.nextLine);
     }
 
     @Override
     public int hashCode() {
-      int pigeonVar_result = Objects.hash(isBitMap, isText, text, fontSize, alignment, isBold, nextLine);
+      int pigeonVar_result = Objects.hash(isBitMap, isText, isTableRow, rowData, text, fontSize, alignment, isBold, nextLine);
+      pigeonVar_result = 31 * pigeonVar_result + Arrays.hashCode(weights);
+      pigeonVar_result = 31 * pigeonVar_result + Arrays.hashCode(alignments);
       pigeonVar_result = 31 * pigeonVar_result + Arrays.hashCode(bitMap);
       return pigeonVar_result;
     }
@@ -184,6 +226,38 @@ public class SenraiseSdkHostApi {
       @CanIgnoreReturnValue
       public @NonNull Builder setIsText(@Nullable Boolean setterArg) {
         this.isText = setterArg;
+        return this;
+      }
+
+      private @Nullable Boolean isTableRow;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setIsTableRow(@Nullable Boolean setterArg) {
+        this.isTableRow = setterArg;
+        return this;
+      }
+
+      private @Nullable List<String> rowData;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setRowData(@Nullable List<String> setterArg) {
+        this.rowData = setterArg;
+        return this;
+      }
+
+      private @Nullable int[] weights;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setWeights(@Nullable int[] setterArg) {
+        this.weights = setterArg;
+        return this;
+      }
+
+      private @Nullable int[] alignments;
+
+      @CanIgnoreReturnValue
+      public @NonNull Builder setAlignments(@Nullable int[] setterArg) {
+        this.alignments = setterArg;
         return this;
       }
 
@@ -239,6 +313,10 @@ public class SenraiseSdkHostApi {
         PrintLine pigeonReturn = new PrintLine();
         pigeonReturn.setIsBitMap(isBitMap);
         pigeonReturn.setIsText(isText);
+        pigeonReturn.setIsTableRow(isTableRow);
+        pigeonReturn.setRowData(rowData);
+        pigeonReturn.setWeights(weights);
+        pigeonReturn.setAlignments(alignments);
         pigeonReturn.setText(text);
         pigeonReturn.setBitMap(bitMap);
         pigeonReturn.setFontSize(fontSize);
@@ -251,9 +329,13 @@ public class SenraiseSdkHostApi {
 
     @NonNull
     ArrayList<Object> toList() {
-      ArrayList<Object> toListResult = new ArrayList<>(8);
+      ArrayList<Object> toListResult = new ArrayList<>(12);
       toListResult.add(isBitMap);
       toListResult.add(isText);
+      toListResult.add(isTableRow);
+      toListResult.add(rowData);
+      toListResult.add(weights);
+      toListResult.add(alignments);
       toListResult.add(text);
       toListResult.add(bitMap);
       toListResult.add(fontSize);
@@ -269,17 +351,25 @@ public class SenraiseSdkHostApi {
       pigeonResult.setIsBitMap((Boolean) isBitMap);
       Object isText = pigeonVar_list.get(1);
       pigeonResult.setIsText((Boolean) isText);
-      Object text = pigeonVar_list.get(2);
+      Object isTableRow = pigeonVar_list.get(2);
+      pigeonResult.setIsTableRow((Boolean) isTableRow);
+      Object rowData = pigeonVar_list.get(3);
+      pigeonResult.setRowData((List<String>) rowData);
+      Object weights = pigeonVar_list.get(4);
+      pigeonResult.setWeights((int[]) weights);
+      Object alignments = pigeonVar_list.get(5);
+      pigeonResult.setAlignments((int[]) alignments);
+      Object text = pigeonVar_list.get(6);
       pigeonResult.setText((String) text);
-      Object bitMap = pigeonVar_list.get(3);
+      Object bitMap = pigeonVar_list.get(7);
       pigeonResult.setBitMap((byte[]) bitMap);
-      Object fontSize = pigeonVar_list.get(4);
+      Object fontSize = pigeonVar_list.get(8);
       pigeonResult.setFontSize((Double) fontSize);
-      Object alignment = pigeonVar_list.get(5);
+      Object alignment = pigeonVar_list.get(9);
       pigeonResult.setAlignment((Long) alignment);
-      Object isBold = pigeonVar_list.get(6);
+      Object isBold = pigeonVar_list.get(10);
       pigeonResult.setIsBold((Boolean) isBold);
-      Object nextLine = pigeonVar_list.get(7);
+      Object nextLine = pigeonVar_list.get(11);
       pigeonResult.setNextLine((Boolean) nextLine);
       return pigeonResult;
     }
